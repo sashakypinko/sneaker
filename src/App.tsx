@@ -1,25 +1,32 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Container, CssBaseline, ThemeProvider} from '@mui/material';
+import {BrowserRouter as Router} from 'react-router-dom';
+import SnackbarProvider from './components/custom-ui/snackbar';
+import Routes from './routes/routes';
+import Header from './components/layouts/header';
+import Footer from './components/layouts/footer';
+import theme from './configs/theme';
+
+import '@fontsource/montserrat/400.css';
+import '@fontsource/montserrat/500.css';
+import '@fontsource/montserrat/600.css';
+import '@fontsource/montserrat/700.css';
+import '@fontsource/montserrat/900.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ThemeProvider theme={theme}>
+        <SnackbarProvider>
+          <CssBaseline/>
+          <Router>
+            <Header/>
+            <Container maxWidth="xl">
+              <Routes/>
+            </Container>
+            <Footer/>
+          </Router>
+        </SnackbarProvider>
+      </ThemeProvider>
   );
 }
 
